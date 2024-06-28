@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Goofy Birthday Celebration</title>
+    <style>
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes blink {
+            0% {
+                visibility: hidden;
+            }
+
+            50% {
+                visibility: hidden;
+            }
+
+            100% {
+                visibility: visible;
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                background-color: yellow;
+            }
+
+            25% {
+                background-color: green;
+            }
+
+            50% {
+                background-color: blue;
+            }
+
+            75% {
+                background-color: purple;
+            }
+
+            100% {
+                background-color: yellow;
+            }
+        }
+
+        @keyframes textShadowBlink {
+            0% {
+                text-shadow: 2px 2px #ff0000;
+            }
+
+            25% {
+                text-shadow: 2px 2px #00ff00;
+            }
+
+            50% {
+                text-shadow: 2px 2px #0000ff;
+            }
+
+            75% {
+                text-shadow: 2px 2px #ff00ff;
+            }
+
+            100% {
+                text-shadow: 2px 2px #ff0000;
+            }
+        }
+
+        @keyframes borderBlink {
+            0% {
+                border: 5px solid #ff0000;
+            }
+
+            25% {
+                border: 5px solid #00ff00;
+            }
+
+            50% {
+                border: 5px solid #0000ff;
+            }
+
+            75% {
+                border: 5px solid #ff00ff;
+            }
+
+            100% {
+                border: 5px solid #ff0000;
+            }
+        }
+
+        @keyframes movingBackground {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            background-color: #f7e5f7;
+            animation: colorChange 5s infinite, movingBackground 20s infinite linear;
+            cursor: url('a-patty2.cur'), auto;
+        }
+
+        h1 {
+            font-size: 69px;
+            color: red;
+            animation: blink 1s infinite, colorChange 2s infinite;
+        }
+
+        img.rotate {
+            animation: rotate 5s infinite linear;
+        }
+
+        img.rotate {
+            animation: rotate 5s infinite linear, borderBlink 2s infinite;
+        }
+
+        .annoying-text {
+            animation: blink 0.5s infinite, colorChange 3s infinite, textShadowBlink 1s infinite;
+            border: 5px solid #ff00ff;
+            font-size: 24px;
+            animation: blink 0.5s infinite, colorChange 3s infinite;
+            color: #ff00ff;
+            text-shadow: 1px 1px 5px #ffffff;
+        }
+
+        .confetti-container {
+            user-select: none;
+            z-index: 10;
+        }
+
+        .confetti {
+            position: relative;
+            left: 0;
+            right: 0;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .confetti .square {
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--bg);
+            transform: rotate(-140deg);
+        }
+
+        .confetti .rectangle {
+            width: 1rem;
+            height: 0.5rem;
+            background-color: var(--bg);
+        }
+
+        .confetti .hexagram {
+            width: 0;
+            height: 0;
+            border-left: 0.5rem solid transparent;
+            border-right: 0.5rem solid transparent;
+            border-bottom: 1rem solid var(--bg);
+            position: relative;
+        }
+
+        .confetti .hexagram:after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 0.5rem solid transparent;
+            border-right: 0.5rem solid transparent;
+            border-top: 1rem solid var(--bg);
+            position: absolute;
+            top: 0.33rem;
+            left: -0.5rem;
+        }
+
+        .confetti .pentagram {
+            width: 0rem;
+            height: 0rem;
+            display: block;
+            margin: 0.5rem 0;
+            border-right: 1rem solid transparent;
+            border-bottom: 0.7rem solid var(--bg);
+            border-left: 1rem solid transparent;
+            transform: rotate(35deg);
+            position: relative;
+        }
+
+        .confetti .pentagram:before {
+            content: "";
+            width: 0;
+            height: 0;
+            display: block;
+            border-bottom: 0.8rem solid var(--bg);
+            border-left: 0.3rem solid transparent;
+            border-right: 0.3rem solid transparent;
+            transform: rotate(-35deg);
+            position: absolute;
+            top: -0.45rem;
+            left: -0.65rem;
+        }
+
+        .confetti .pentagram:after {
+            content: "";
+            width: 0rem;
+            height: 0rem;
+            display: block;
+            border-right: 1rem solid transparent;
+            border-bottom: 0.7rem solid var(--bg);
+            border-left: 1rem solid transparent;
+            transform: rotate(-70deg);
+            position: absolute;
+            top: 0.03rem;
+            left: -1.05rem;
+        }
+
+        .confetti .dodecagram {
+            background: var(--bg);
+            width: 0.8rem;
+            height: 0.8rem;
+            position: relative;
+        }
+
+        .confetti .dodecagram:before {
+            content: "";
+            height: 0.8rem;
+            width: 0.8rem;
+            background: var(--bg);
+            transform: rotate(30deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .confetti .dodecagram:after {
+            content: "";
+            height: 0.8rem;
+            width: 0.8rem;
+            background: var(--bg);
+            transform: rotate(60deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .confetti .wavy-line {
+            position: relative;
+        }
+
+        .confetti .wavy-line::after,
+        .confetti .wavy-line::before {
+            content: "";
+            height: 1rem;
+            width: 8rem;
+            background-size: 2rem 1rem;
+            position: absolute;
+            left: -9rem;
+            transform: rotate(90deg);
+        }
+
+        .confetti .wavy-line::before {
+            background-image: linear-gradient(45deg,
+                    transparent,
+                    transparent 50%,
+                    var(--bg) 50%,
+                    transparent 60%);
+            top: 1rem;
+        }
+
+        .confetti .wavy-line::after {
+            background-image: linear-gradient(-45deg,
+                    transparent,
+                    transparent 50%,
+                    var(--bg) 50%,
+                    transparent 60%);
+        }
+
+        .confetti i {
+            z-index: 100;
+            width: 3rem;
+            height: 3rem;
+            margin: 0 0.2rem;
+            animation-name: confetti;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-duration: calc(70s / var(--speed));
+        }
+
+        .confetti i:nth-child(even) {
+            transform: rotate(90deg);
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+    <script>
+        function playSound() {
+            var audio = new Audio('bday-cut.mp3');
+            audio.play();
+        }
+    </script>
+</head>
+
+<body onload="createConfetti(3060);">
+    <marquee behavior="scroll" direction="left" scrollamount="10">
+        <h1>Happy Birthday!</h1>
+    </marquee>
+    <div class="confetti-container">
+        <div class="confetti">
+        </div>
+    </div>
+    <br>
+    <img class="rotate" src="img/mindblow.gif">
+    <img class="rotate" src="img/stego.gif">
+    <img class="rotate" src="img/stego-bday.webp">
+    <img class="rotate" src="img/stego-break.webp">
+    <img class="rotate" src="img/stego-type.webp">
+    <br>
+    <div class="annoying-text">HAPPY BIRTHDAY!</div>
+    <div class="annoying-text">CELEBRATE!</div>
+    <script>
+        const shapes = [
+            "square",
+            "pentagram",
+            "rectangle",
+            "hexagram",
+            "pentagram",
+            "dodecagram",
+            "wavy-line"
+        ]
+        function createConfetti(numConfetti) {
+            const container = document.querySelector('.confetti-container .confetti');
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('i');
+                confetti.classList.add(shapes[Math.floor(Math.random() * shapes.length)]);
+                confetti.style.setProperty('--speed', Math.floor(Math.random() * 50));
+                confetti.style.setProperty('--bg', getRandomColor());
+                confetti.addEventListener("click", e => {
+                    playSound()
+                })
+                container.appendChild(confetti);
+            }
+        }
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+</body>
+
+</html>
