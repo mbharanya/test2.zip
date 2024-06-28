@@ -4,6 +4,26 @@
 <head>
     <title>Goofy Birthday Celebration</title>
     <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
         @keyframes rotate {
             0% {
                 transform: rotate(0deg);
@@ -133,6 +153,7 @@
             animation: blink 0.5s infinite, colorChange 3s infinite;
             color: #ff00ff;
             text-shadow: 1px 1px 5px #ffffff;
+            rotate: -0.1turn;
         }
 
         .confetti-container {
@@ -298,6 +319,21 @@
             transform: rotate(90deg);
         }
 
+        /* Popup styles */
+        .popup {
+            position: fixed;
+            width: 300px;
+            height: 100px;
+            /* Set fixed height */
+            padding: 20px;
+            background-color: #ffcc00;
+            border: 2px solid #ff6600;
+            z-index: 1000;
+            animation: fadeIn 1s, slideIn 1s;
+            background-color: magenta;
+            color: cyan;
+        }
+
         @keyframes confetti {
             0% {
                 transform: translateY(-100vh);
@@ -313,6 +349,82 @@
             var audio = new Audio('folk-metal.mp3');
             audio.play();
         }
+
+        function showPopup() {
+            const messages = [
+                "Enjoy the celebration!",
+                "Don't forget to have fun!",
+                "Wishing you a fantastic day!",
+                "Cheers to another year!",
+                "May your day be filled with joy!",
+                "Happy Birthday, party on!",
+                "Here's to you!",
+                "Celebrate and smile!",
+                "You deserve the best!",
+                "Make a wish!",
+                "Have a blast!",
+                "Birthday hugs and kisses!",
+                "Time to party!",
+                "Have a fabulous birthday!",
+                "You're the best!",
+                "Hope all your dreams come true!",
+                "Another year older, another year wiser!",
+                "Happy, happy birthday!",
+                "Blow out the candles!",
+                "Enjoy your special day!",
+                "Time for cake!",
+                "You're amazing!",
+                "Hip hip hooray!",
+                "Have the happiest of birthdays!",
+                "Sending birthday cheer!",
+                "Live it up!",
+                "May your birthday be filled with laughter!",
+                "You're the birthday star!",
+                "Celebrate big!",
+                "It's your special day!",
+                "Hope your day is as special as you!",
+                "To the birthday person!",
+                "Wishing you joy and happiness!",
+                "Have a wonderful birthday!",
+                "Many happy returns!",
+                "Sending birthday wishes your way!",
+                "Hope you have a great day!",
+                "Hooray for birthdays!",
+                "You're a superstar!",
+                "Today is all about you!",
+                "Have an unforgettable birthday!",
+                "Time to celebrate!",
+                "Make it a great one!",
+                "Here's to your big day!",
+                "Enjoy every moment!",
+                "Birthday cheers!",
+                "Have a fantastic birthday!",
+                "Hope it's the best one yet!",
+                "Wishing you all the best!"
+            ];
+
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.innerHTML = `<p>${message}</p><button onclick="this.parentElement.remove()">Close</button>`;
+            document.body.appendChild(popup);
+
+            // Set random position
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const popupWidth = popup.offsetWidth;
+            const popupHeight = popup.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * (viewportWidth - popupWidth));
+            const randomY = Math.floor(Math.random() * (viewportHeight - popupHeight));
+
+            popup.style.left = `${randomX}px`;
+            popup.style.top = `${randomY}px`;
+        }
+
+        // Show popups with a delay
+        setInterval(() => showPopup(), 3000);
+        setInterval(() => showPopup(), 7000);
     </script>
 </head>
 
@@ -330,6 +442,10 @@
     <img class="rotate" src="img/stego-bday.webp">
     <img class="rotate" src="img/stego-break.webp">
     <img class="rotate" src="img/stego-type.webp">
+    <img class="rotate" src="img/bdaysong-dino1.png">
+    <img class="rotate" src="img/bdaysong-dino2.png">
+    <img class="rotate" src="img/bdaysong-dino3.png">
+    <img class="rotate" src="img/bdaysong-dino4.png">
     <br>
     <div class="annoying-text">HAPPY BIRTHDAY!</div>
     <div class="annoying-text">CELEBRATE!</div>
